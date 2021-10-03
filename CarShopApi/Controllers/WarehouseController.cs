@@ -8,7 +8,6 @@ using CarShopApi.ResponseModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
 
 namespace CarShopApi.Controllers
 {

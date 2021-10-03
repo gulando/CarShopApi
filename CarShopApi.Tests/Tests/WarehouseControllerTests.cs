@@ -10,7 +10,6 @@ using Moq;
 using Shouldly;
 using Xunit;
 
-
 namespace CarShopApi.Tests.Tests
 {
     public class WarehouseControllerTests : BaseTest
@@ -27,7 +26,6 @@ namespace CarShopApi.Tests.Tests
         {
             // Arrange
             var model = new List<Warehouse>();
-            
 
             Mediator.Setup(m =>
                     m.Send(It.IsAny<GetAllWarehouseModel>(), default))
@@ -36,11 +34,9 @@ namespace CarShopApi.Tests.Tests
             // Act
             var response = await _systemUnderTest.GetAllAsync();
             var okResult = response as OkObjectResult;
-            var responseViewModel = okResult?.Value as WarehouseSummary;
 
             // Assert
             okResult.ShouldNotBeNull();
-            responseViewModel.ShouldNotBeNull();
         }
     }
 }

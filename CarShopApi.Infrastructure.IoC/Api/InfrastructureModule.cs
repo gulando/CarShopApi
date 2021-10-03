@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using CarShopApi.Infrastructure.DataSeedModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -30,7 +31,13 @@ namespace Infrastructure.IoC.Api
         
         public static void AddMongoDb(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("ConnectionStrings:ConnectionString")));
+            services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("DefaultConnection")));
+        }
+        
+        public static void AddDataSeedOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            services
+                .Configure<DataSeedOptions>(configuration.GetSection("App:DataSeed"));
         }
     }
 }

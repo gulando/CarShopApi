@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using CarShopApi.Application.Core.Common.IRepository;
 using CarShopApi.Domain.Models.Warehouse;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 
 namespace CarShopApi.Infrastructure.DataSeedModels
 {
@@ -26,8 +28,13 @@ namespace CarShopApi.Infrastructure.DataSeedModels
         
         public async Task SeedAllInitialDataAsync(CancellationToken cancellationToken = default)
         {
-            var data = GetWarehouses();
-            await _collection.InsertManyAsync(data, cancellationToken: cancellationToken);
+            var existedData =  await _collection.Find(_ => true).ToListAsync(cancellationToken: cancellationToken);
+
+            if (existedData == null || !existedData.Any())
+            {
+                var data = GetWarehouses();
+                await _collection.InsertManyAsync(data, cancellationToken: cancellationToken);
+            }
         }
 
         private List<Warehouse> GetWarehouses()
@@ -38,8 +45,8 @@ namespace CarShopApi.Infrastructure.DataSeedModels
         {
             var fullPath = Path.Combine(path, $"{fileName}.json");
             var data = File.ReadAllText(fullPath, Encoding.UTF8);
-
-            return JsonSerializer.Deserialize<List<T>>(data);
+            
+            return JsonConvert.DeserializeObject<List<T>>(data);
         }
         
     }

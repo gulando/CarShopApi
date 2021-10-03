@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using CarShopApi.Application.Core.Common.IRepository;
 using Infrastructure.IoC.Api;
@@ -22,8 +23,10 @@ namespace CarShopApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-            services.AddMapper(Configuration);
+            services.AddDataSeedOptions(Configuration);
+            
             services.AddControllers();
+            services.AddMapper(Configuration);
             
             services.AddMediatR();
             services.AddSwagger();

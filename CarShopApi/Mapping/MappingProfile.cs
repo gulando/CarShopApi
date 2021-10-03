@@ -10,7 +10,9 @@ namespace CarShopApi.Mapping
         {
             CreateMap<Warehouse, WarehouseModel>()
                 .ForMember(dest => dest.Name, opt => 
-                    opt.MapFrom(src => src.Name));
+                    opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Location, opt => 
+                    opt.MapFrom(src => src.Cars.Location));
         }
     }
 }

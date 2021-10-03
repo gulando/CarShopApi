@@ -2,7 +2,7 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace CarShopApi.Domain.Models.WareHouse
+namespace CarShopApi.Domain.Models.Warehouse
 {
     public class Car
     {

@@ -20,11 +20,14 @@ namespace CarShopApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-            services.AddControllers();
-            services.AddMediatR();
-            
-            services.AddSwagger();
             services.AddMapper(Configuration);
+            services.AddControllers();
+            
+            services.AddMediatR();
+            services.AddSwagger();
+            
+            services.AddMongoDb(Configuration);
+            services.AddRepositories();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

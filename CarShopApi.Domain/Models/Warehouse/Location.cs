@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace CarShopApi.Domain.Models.WareHouse
+namespace CarShopApi.Domain.Models.Warehouse
 {
     public class Location
     {

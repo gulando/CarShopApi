@@ -1,0 +1,38 @@
+version: "3.5"
+
+services:
+ 
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - carapi
+    # network_mode: host
+    volumes:
+      - mongo:/data/db
+
+  vault:
+    image: vault
+    container_name: vault
+    restart: always
+    ports:
+      - 8200:8200
+    networks:
+      - carapi
+    # network_mode: host
+    environment:
+      - VAULT_ADDR=http://127.0.0.1:8200
+      - VAULT_DEV_ROOT_TOKEN_ID=secret
+    cap_add:
+      - IPC_LOCK
+
+networks:
+  carapi:
+    name: carapi-network
+
+volumes:
+  mongo:
+    driver: local

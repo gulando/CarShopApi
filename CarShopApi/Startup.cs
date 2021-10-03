@@ -1,5 +1,5 @@
 using System.Threading;
-using CarShopApi.Application.Core.IRepository;
+using CarShopApi.Application.Core.Common.IRepository;
 using Infrastructure.IoC.Api;
 using Infrastructure.IoC.Application;
 using Microsoft.AspNetCore.Builder;

@@ -8,4 +8,14 @@
       <ProjectReference Include="..\CarShopApi.Domain\CarShopApi.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Common" />
+      <Folder Include="UseCases\Commands" />
+      <Folder Include="UseCases\Queries\GetById" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="9.0.0" />
+    </ItemGroup>
+
 </Project>

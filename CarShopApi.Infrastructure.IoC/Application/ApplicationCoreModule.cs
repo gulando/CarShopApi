@@ -1,5 +1,5 @@
 using CarShopApi.Application.Core;
-using CarShopApi.Application.Core.IRepository;
+using CarShopApi.Application.Core.Common.IRepository;
 using CarShopApi.Infrastructure.DataSeedModels;
 using CarShopApi.Infrastructure.Repositories;
 using MediatR;

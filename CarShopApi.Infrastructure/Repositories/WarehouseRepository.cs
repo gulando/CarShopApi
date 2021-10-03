@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CarShopApi.Application.Core.IRepository;
+using CarShopApi.Application.Core.Common.IRepository;
 using CarShopApi.Domain.Models.Warehouse;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -21,7 +21,8 @@ namespace CarShopApi.Infrastructure.Repositories
         {
             await _collection.InsertOneAsync(warHouse);
 
-            return warHouse.Id;        }
+            return warHouse.Id;        
+        }
 
         public Task<Warehouse> Get(ObjectId objectId)
         {

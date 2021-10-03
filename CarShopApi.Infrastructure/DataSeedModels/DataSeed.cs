@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using CarShopApi.Application.Core.IRepository;
+using CarShopApi.Application.Core.Common.IRepository;
 using CarShopApi.Domain.Models.Warehouse;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;

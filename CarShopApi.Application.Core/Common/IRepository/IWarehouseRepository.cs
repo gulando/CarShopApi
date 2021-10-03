@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CarShopApi.Domain.Models.Warehouse;
 using MongoDB.Bson;
 
-namespace CarShopApi.Application.Core.IRepository
+namespace CarShopApi.Application.Core.Common.IRepository
 {
     public interface IWarehouseRepository
     {

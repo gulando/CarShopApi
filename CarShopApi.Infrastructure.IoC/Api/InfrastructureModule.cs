@@ -30,7 +30,7 @@ namespace Infrastructure.IoC.Api
         
         public static void AddMongoDb(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("MongoDb")));
+            services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("ConnectionStrings:ConnectionString")));
         }
     }
 }

@@ -24,14 +24,14 @@ namespace CarShopApi.Controllers
             _mediator = mediator;        }
 
         [HttpGet]
-        public async Task<IActionResult> Get(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetAsync(CancellationToken cancellationToken = default)
         {
             var request = new GetWarehouseModel();
 
             var warehouses = await _mediator.Send(request, cancellationToken);
 
             var responseModel = _mapper.Map<List<WarehouseModel>>(warehouses);
-            _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(Get)}");
+            _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(GetAsync)}");
             
             return Ok(responseModel);
         }

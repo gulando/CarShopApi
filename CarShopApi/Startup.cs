@@ -1,3 +1,5 @@
+using System.Threading;
+using CarShopApi.Application.Core.IRepository;
 using Infrastructure.IoC.Api;
 using Infrastructure.IoC.Application;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +42,8 @@ namespace CarShopApi
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            app.ApplicationServices.GetRequiredService<IDataSeed>().SeedAllInitialDataAsync(CancellationToken.None);
         }
     }
 }

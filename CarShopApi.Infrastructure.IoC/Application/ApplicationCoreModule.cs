@@ -1,5 +1,6 @@
 using CarShopApi.Application.Core;
 using CarShopApi.Application.Core.IRepository;
+using CarShopApi.Infrastructure.DataSeedModels;
 using CarShopApi.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,10 @@ namespace Infrastructure.IoC.Application
         
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IWarehouseRepository, WarehouseRepository>();
+            services
+                .AddTransient<IWarehouseRepository, WarehouseRepository>()
+                .AddSingleton<IDataSeed, DataSeed>();
+                ;
         }
     }
 }

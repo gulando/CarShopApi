@@ -8,7 +8,7 @@ using MediatR;
 
 namespace CarShopApi.Application.Core.UseCases.Queries.GetAll
 {
-    public class GetAllHandler : IRequestHandler<GetWarehouseModel, List<Warehouse>>
+    public class GetAllHandler : IRequestHandler<GetAllWarehouseModel, List<Warehouse>>
     {
         private readonly IWarehouseRepository _warehouseRepository;
 
@@ -17,7 +17,7 @@ namespace CarShopApi.Application.Core.UseCases.Queries.GetAll
             _warehouseRepository = warehouseRepository;
         }
         
-        public async Task<List<Warehouse>> Handle(GetWarehouseModel request, CancellationToken cancellationToken)
+        public async Task<List<Warehouse>> Handle(GetAllWarehouseModel request, CancellationToken cancellationToken)
         {
             var warehouses = await _warehouseRepository.Get();
 

@@ -30,13 +30,13 @@ namespace CarShopApi.Tests.Tests
             
 
             Mediator.Setup(m =>
-                    m.Send(It.IsAny<GetWarehouseModel>(), default))
+                    m.Send(It.IsAny<GetAllWarehouseModel>(), default))
                 .ReturnsAsync(model);
 
             // Act
-            var response = await _systemUnderTest.GetAsync();
+            var response = await _systemUnderTest.GetAllAsync();
             var okResult = response as OkObjectResult;
-            var responseViewModel = okResult?.Value as WarehouseModel;
+            var responseViewModel = okResult?.Value as WarehouseSummary;
 
             // Assert
             okResult.ShouldNotBeNull();

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CarShopApi.Application.Core.UseCases.Queries.GetAll
 {
-    public class GetWarehouseModel : IRequest<List<Warehouse>>
+    public class GetAllWarehouseModel : IRequest<List<Warehouse>>
     {
     }
 }

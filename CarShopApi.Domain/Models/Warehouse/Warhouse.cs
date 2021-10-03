@@ -6,6 +6,7 @@ namespace CarShopApi.Domain.Models.Warehouse
     [BsonIgnoreExtraElements]
     public class Warehouse
     {
+        [BsonId]
         [BsonElement("_id")]
         public ObjectId Id { get; set; }
 

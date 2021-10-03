@@ -4,6 +4,6 @@ namespace CarShopApi.ResponseModels
     {
         public string Name { get; set; }
         
-        public string Location { get; set; }
+        public CarModel Cars { get; set; }
     }
 }

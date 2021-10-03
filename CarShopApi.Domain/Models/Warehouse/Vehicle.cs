@@ -7,8 +7,8 @@ namespace CarShopApi.Domain.Models.Warehouse
     [BsonIgnoreExtraElements]
     public class Vehicle
     {
-        [BsonElement("_id")]
-        public ObjectId Id { get; set; }
+        [BsonId]
+        public string _id { get; set; }
 
         [BsonElement("make")]
         public string Make { get; set; }

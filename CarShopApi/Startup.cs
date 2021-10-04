@@ -1,6 +1,6 @@
-using System;
 using System.Threading;
 using CarShopApi.Application.Core.Common.IRepository;
+using CarShopApi.Middlewares;
 using Infrastructure.IoC.Api;
 using Infrastructure.IoC.Application;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +37,7 @@ namespace CarShopApi
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CarShopApi v1"));
             app.UseSerilogRequestLogging();

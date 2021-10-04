@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -28,12 +29,18 @@ namespace CarShopApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken = default)
         {
+            _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(GetAllAsync)}");
+
             var request = new GetAllWarehouseModel();
 
             var warehouses = await _mediator.Send(request, cancellationToken);
 
             var responseModel = _mapper.Map<List<WarehouseSummary>>(warehouses);
-            _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(GetAllAsync)}");
+
+            if (responseModel == null || !responseModel.Any())
+            {
+                return NotFound("Not found");
+            }
             
             return Ok(responseModel);
         }
@@ -41,13 +48,18 @@ namespace CarShopApi.Controllers
         [HttpGet("/id")]
         public async Task<IActionResult> GetByIdAsync([FromQuery] string id, CancellationToken cancellationToken = default)
         {
+            _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(GetByIdAsync)}");
+
             var request = new GetByIdWarehouseModel {Id = id};
 
             var warehouses = await _mediator.Send(request, cancellationToken);
 
             var responseModel = _mapper.Map<WarehouseModel>(warehouses);
             
-            _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(GetByIdAsync)}");
+            if (responseModel == null)
+            {
+                return NotFound("Not found");
+            }
             
             return Ok(responseModel);
         }

@@ -1,5 +1,7 @@
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using CarShopApi.Application.Core.Common.Exceptions;
 using CarShopApi.Application.Core.Common.IRepository;
 using CarShopApi.Domain.Models.Warehouse;
 using MediatR;
@@ -18,9 +20,13 @@ namespace CarShopApi.Application.Core.UseCases.Queries.GetById
         
         public async Task<Warehouse> Handle(GetByIdWarehouseModel request, CancellationToken cancellationToken)
         {
-            var warehouse = await _warehouseRepository.Get(ObjectId.Parse(request.Id));
+            if (ObjectId.TryParse(request.Id, out var parsedData))
+            {
+                var warehouse = await _warehouseRepository.Get(parsedData);
+                return warehouse;
+            }
 
-            return warehouse;
+            throw new CarShopException(HttpStatusCode.BadRequest, $"{request.Id} is not valid {nameof(ObjectId)}");
         }
     }
 }

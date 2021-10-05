@@ -45,7 +45,7 @@ namespace CarShopApi.Controllers
             return Ok(responseModel);
         }
         
-        [HttpGet("/id")]
+        [HttpGet("id")]
         public async Task<IActionResult> GetByIdAsync([FromQuery] string id, CancellationToken cancellationToken = default)
         {
             _logger.LogInformation($"{nameof(WarehouseController)} - {nameof(GetByIdAsync)}");

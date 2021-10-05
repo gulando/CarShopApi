@@ -22,7 +22,7 @@ namespace CarShopApi.Tests.Tests
         }
         
         [Fact]
-        public async Task GetAsync_ShouldReturnOkWithViewModelAsync()
+        public async Task GetAsync_ShouldReturnNotFoundWithViewModelAsync()
         {
             // Arrange
             var model = new List<Warehouse>();
@@ -36,7 +36,7 @@ namespace CarShopApi.Tests.Tests
             var okResult = response as OkObjectResult;
 
             // Assert
-            okResult.ShouldNotBeNull();
+            okResult.ShouldBeNull();
         }
     }
 }
